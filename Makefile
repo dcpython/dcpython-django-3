@@ -387,3 +387,7 @@ webpack-init:
 webpack:
 	webpack
 pack: webpack  # Alias
+
+# dcpython
+PROJECT=dcpython
+APP=www
