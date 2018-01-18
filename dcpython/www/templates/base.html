@@ -1,0 +1,132 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+      
+        DC Python
+ 
+    </title>
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+      <link href="{% static 'toolkit-minimal.css' %}" rel="stylesheet">
+      <link href="{% static 'application-minimal.css' %}" rel="stylesheet">
+    
+
+    
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      /* …curses ios, etc… */
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+          width: 1px;
+          min-width: 100%;
+          *width: 100%;
+        }
+        #stage {
+          height: 1px;
+          overflow: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+
+
+<body>
+  
+
+
+
+<div class="container pt-4">
+  <nav class="navbar navbar-light navbar-expand-sm text-uppercase app-navbar mb-5">
+    <a class="navbar-brand mr-auto" href="../">
+      <span>DC Python</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="https://meetup.com/dcpython">Meetup</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+</nav>
+</div>
+
+<div class="block app-block-intro">
+  <div class="container text-xs-center">
+    <img src="{% static 'dcpython.png' %}">
+    <p class="lead mb-5 pb-5">We promote the research and development of Python Software and the education of its users.</p>
+  </div>
+</div>
+
+<div class="block app-block-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2 mb-4">
+        <ul class="list-unstyled list-spaced">
+          <li><h6 class="text-uppercase">Products</h6></li>
+          <li>Todo</li>
+          <li>Calendario</li>
+          <li>Email Town</li>
+          <li>Pomodorotary</li>
+          <li>ChillTower</li>
+        </ul>
+      </div>
+      <div class="col-sm-2 mb-4">
+        <ul class="list-unstyled list-spaced">
+          <li><h6 class="text-uppercase">Extras</h6></li>
+          <li>AutotuneU</li>
+          <li>Freestyler</li>
+          <li>Chillaxation</li>
+        </ul>
+      </div>
+      <div class="col-sm-2 mb-4">
+        <ul class="list-unstyled list-spaced">
+          <li><h6 class="text-uppercase">Support</h6></li>
+          <li>Online Support</li>
+          <li>Telephone Sales</li>
+          <li>Help Desk</li>
+          <li>Workshops</li>
+        </ul>
+      </div>
+       <div class="col-sm-6">
+        <h6 class="text-uppercase">About</h6>
+        <p>Shoutout to Invision team for creating the <a href="http://www.invisionapp.com/do">Do UI kit</a> that we used to fake our app screenshots. Also to the Dribbble community for providing phone mockups that look amazing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+</body>
+</html>
+
