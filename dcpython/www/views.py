@@ -9,6 +9,8 @@ def home(request):
 def aws(request):
     return render(request, 'aws.html', {})
 
+def coc(request):
+    return render(request, 'coc.html', {})
 
 def team(request):
     return render(request, 'team.html', {})
