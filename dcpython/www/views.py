@@ -8,3 +8,7 @@ def home(request):
 
 def aws(request):
     return render(request, 'aws.html', {})
+
+
+def team(request):
+    return render(request, 'team.html', {})
