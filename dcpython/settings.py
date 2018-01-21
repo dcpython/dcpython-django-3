@@ -129,3 +129,7 @@ STATIC_ROOT = 'static'
 ALLOWED_HOSTS = ['*']
 AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', }, { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },]
 import dj_database_url; DATABASES = { 'default': dj_database_url.config(default=os.environ.get( 'DATABASE_URL', 'postgres://%s:%s@%s:%s/%s' % (os.environ.get('DB_USER', ''), os.environ.get('DB_PASS', ''), os.environ.get('DB_HOST', 'localhost'), os.environ.get('DB_PORT', '5432'), os.environ.get('DB_NAME', 'dcpython_www'))))}
+
+# Meetup
+MEETUP_API_KEY = os.environ.get("MEETUP_API_KEY", "<your secret key>")
+MEETUP_API_URL = 'https://api.meetup.com'
