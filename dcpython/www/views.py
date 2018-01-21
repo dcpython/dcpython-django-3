@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 import requests
-import timezone
+from django.utils import timezone
 import os
 
 # Create your views here.
