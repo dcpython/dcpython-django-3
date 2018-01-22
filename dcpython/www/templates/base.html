@@ -92,7 +92,13 @@
     <div class="row">
        <div class="col-sm-6" id="about">
         <h6 class="text-uppercase">About</h6>
-        <p class="mb-5">We promote and support the research, development and use of Python software in DC, Maryland and Virginia. We support the education of all Python users by organizing and hosting frequent instructional events to foster and facilitate academic research, development and learning as well as professional growth and networking.</p>
+        <p class="lead mb-5">We promote and support the research, development and use of Python software in DC, Maryland and Virginia. We support the education of all Python users by organizing and hosting frequent instructional events to foster and facilitate academic research, development and learning as well as professional growth and networking.</p>
+
+        <ul class="list-unstyled list-spaced mb-5">
+          <li><small><a href="{% url 'coc' %}">Code of Conduct</a></small></li>
+          <li><small><a href="{% url 'donate' %}">Donate</a></small></li>
+          <li><small><a href="{% url 'legal' %}">Legal</a></small></li>
+        </ul>
 
         <p class="mb-5"><a href="https://www.python.org/about/legal/">Python and PyCon are trademarks or registered trademarks of the Python Software Foundation.</a></p>
 
@@ -104,11 +110,6 @@
         <ul class="list-unstyled list-spaced mb-5">
           <li><h6 class="text-uppercase">Presentations</h6></li>
           <li><a target="_blank" href="https://www.slideshare.net/aclark/presentations">Slideshare</a></li>
-        </ul>
-        <ul class="list-unstyled list-spaced mb-5">
-          <li><small><a href="{% url 'coc' %}">Code of Conduct</a></small></li>
-          <li><small><a href="{% url 'donate' %}">Donate</a></small></li>
-          <li><small><a href="{% url 'legal' %}">Legal</a></small></li>
         </ul>
       </div>
       <div class="col-sm-2 mb-4">
