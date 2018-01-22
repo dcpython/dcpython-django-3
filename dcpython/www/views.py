@@ -9,7 +9,7 @@ import os
 MEETUP_API_URL = os.environ.get('MEETUP_API_URL', '')
 
 
-# @cache_page(300)
+@cache_page(300)
 def home(request):
     context = {}
     if MEETUP_API_URL:
