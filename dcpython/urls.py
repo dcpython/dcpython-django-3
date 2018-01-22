@@ -20,6 +20,7 @@ from .www import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^donate$', views.donate, name='donate'),
     url(r'^andrew-w-singer$', views.aws, name='aws'),
     url(r'^code-of-conduct$', views.coc, name='coc'),
     url(r'^team$', views.team, name='team'),

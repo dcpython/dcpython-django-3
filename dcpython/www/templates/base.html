@@ -21,6 +21,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
       <link href="{% static 'toolkit-minimal.css' %}" rel="stylesheet">
       <link href="{% static 'application-minimal.css' %}" rel="stylesheet">
+      <link href="{% static 'dcpython.css' %}" rel="stylesheet">
 
       <link rel="icon" href="{% static 'favicon.ico' %}">
 
@@ -68,6 +69,9 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'donate' %}">Donate</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#meetup">Meetup</a>
         </li>
@@ -124,6 +128,7 @@
     <script src="{% static 'popper.min.js' %}"></script>
     <script src="{% static 'toolkit.js' %}"></script>
     <script src="{% static 'application.js' %}"></script>
+    <script src="{% static 'dcpython.js' %}"></script>
     <script>
       // execute/clear BS loaders for docs
       $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})

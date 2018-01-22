@@ -1,0 +1,100 @@
+body {
+  padding-top: 5rem;
+  background: white;
+  opacity: 0.9;
+}
+#alex img {
+  margin: 0 1rem 1rem 0;
+}
+#amy img {
+  margin: 0 1rem 1rem 0;
+}
+#matt img {
+  margin: 0 1rem 1rem 0;
+}
+#andrew-w-singer img {
+  margin: 0 1rem 1rem 0;
+}
+#content {
+  background: white;
+  opacity: 0.9;
+}
+#footer {
+  padding: 5rem;
+  background: white;
+  opacity: 0.9;
+}
+.home {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.page {
+  padding: 3rem 1.5rem;
+}
+
+/* Stripe (via David G) */
+.donor_lvl {
+    background-color: red;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    height: 100px;
+    margin: 10px;
+    border: solid red 5px;
+}
+.donor_lvl:hover {
+    cursor: pointer;
+}
+.donor_lvl h1 {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+.donor_lvl h2 {
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px;
+}
+.platinum {
+    background-color: #f6fafa;
+    border: solid #f6fafa 5px;
+}
+.gold {
+    background-color: gold;
+    border: solid gold 5px;
+}
+.silver {
+    background-color: silver;
+    border: solid silver 5px;
+}
+.bronze {
+    background-color: #C69633;
+    border: solid #C69633 5px;
+}
+.donor_lvl.active {
+    border: solid black 5px;
+}
+.hidden {
+  display: none;
+}
+
+/* http://v4-alpha.getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css */
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}

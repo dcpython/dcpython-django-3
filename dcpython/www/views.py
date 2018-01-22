@@ -37,5 +37,9 @@ def coc(request):
     return render(request, 'coc.html', {})
 
 
+def donate(request):
+    return render(request, 'donate.html', {})
+
+
 def team(request):
     return render(request, 'team.html', {})
