@@ -41,5 +41,9 @@ def donate(request):
     return render(request, 'donate.html', {})
 
 
+def legal(request):
+    return render(request, 'legal.html', {})
+
+
 def team(request):
     return render(request, 'team.html', {})
