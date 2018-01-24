@@ -46,4 +46,20 @@ def legal(request):
 
 
 def team(request):
-    return render(request, 'team.html', {})
+    context = {}
+    # https://api.meetup.com/2/profiles?&sign=true&photo-host=public
+    # &role=leads&group_urlname=dcpython&page=20
+    if MEETUP_API_URL:
+        url = ''.join([
+            MEETUP_API_URL, '/2/profiles', '?sign=True', '&role=leads',
+            '&group_urlname=dcpython'
+        ])
+        response = requests.get(url)
+    else:
+        response = None
+    leads = []
+    if response:
+        for lead in response.json():
+            leads.append[lead]
+    context['leads'] = leads
+    return render(request, 'team.html', context)
