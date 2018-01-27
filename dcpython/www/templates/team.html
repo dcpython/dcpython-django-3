@@ -3,8 +3,6 @@
 
 {% block content %}
 
-{{ leads }}
-
 <div class="block app-block-intro">
   <div class="container">
     <h1 class="block-title mb-0 text-uppercase app-myphone-brand text-center">Team</h1>
@@ -12,29 +10,19 @@
   </div>
 </div>
 
-<div class="block block-bordered-lg">
-  <div class="container text-center app-translate-15" data-transition="entrance">
-    <blockquote class="pull-quote">
-      <img class="rounded-circle" src="{% static 'aclark-jobs.jpg' %}">
-      <cite>Alex Clark</cite>
-      <p><strong>Executive Director, President and Founder</strong> of ZPUGDC, Inc./DC Python, a 501(c)(3) non-profit organization serving the MD, VA and DC Python community since 2008. Alex was the Lead Organizer of the Plone Conference 2008 in Washington, D.C., sponsored by ZPUGDC, Inc. In addition, Alex has been organizing and running the (formerly) ZPUGDC (now) DC Python user group for over 15 years. He is originally from Baltimore, Maryland and has a B.S. in Computer Science from Loyola University. In 2004, Alex founded and is currently running his own open-source Python software development and consulting firm, <a href="https://aclark.net">ACLARK.NET, LLC</a>
-      </p>
-
-    </blockquote>
-  </div>
-</div>
-
+{% for lead in leads %}
 
 <div class="block block-bordered-lg">
   <div class="container text-center app-translate-15" data-transition="entrance">
     <blockquote class="pull-quote">
-      <img class="rounded-circle" src="{% static 'amy.png' %}">
-      <cite>Amy Clark</cite>
-      <p><strong>Secretary and Treasurer. </strong>Amy brings many years of professional management, administrative and financial/legal experience to DC Python. She facilitates the smooth and uncomplicated engagement of DC Python's services and resources, and she ensures the quality, accuracy and efficiency of all day-to-day tasks related to the running of the organization and to serving the Python community.</p>
-      </p>
-
+      <img class="rounded-circle" src="{{ lead.photo_url }}">
+      <cite>{{ lead.name }}</cite>
+      <p><strong>{{ lead.role }}</strong></p>
+      <p>{{ lead.bio }}</p>
     </blockquote>
   </div>
 </div>
+
+{% endfor %}
 
 {% endblock %}

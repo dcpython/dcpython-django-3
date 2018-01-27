@@ -7,6 +7,7 @@ import os
 # Create your views here.
 
 MEETUP_API_URL = os.environ.get('MEETUP_API_URL', '')
+MEETUP_API_KEY = os.environ.get('MEETUP_API_KEY', '')
 
 
 @cache_page(300)
@@ -52,14 +53,20 @@ def team(request):
     if MEETUP_API_URL:
         url = ''.join([
             MEETUP_API_URL, '/2/profiles', '?sign=True', '&role=leads',
-            '&group_urlname=dcpython'
+            '&group_urlname=dcpython',
+            '&key=%s' % MEETUP_API_KEY
         ])
         response = requests.get(url)
     else:
         response = None
     leads = []
-    if response:
-        for lead in response.json():
-            leads.append[lead]
+    # dict_keys(['member_id', 'role', 'profile_url', 'created', 'bio',
+    # 'photo', 'other_services', 'name', 'visited', 'photo_url', 'updated',
+    # 'status', 'group'])
+    if response.status_code == 200:
+        results = response.json()
+        if 'results' in results:
+            for lead in results['results']:
+                leads.append(lead)
     context['leads'] = leads
     return render(request, 'team.html', context)
