@@ -6,7 +6,7 @@ import os
 
 # Create your views here.
 
-MEETUP_API_URL = os.environ.get('MEETUP_API_URL', '')
+MEETUP_API_URL = os.environ.get('MEETUP_API_URL', 'https://api.meetup.com')
 MEETUP_API_KEY = os.environ.get('MEETUP_API_KEY', '')
 
 
@@ -63,10 +63,24 @@ def team(request):
     # dict_keys(['member_id', 'role', 'profile_url', 'created', 'bio',
     # 'photo', 'other_services', 'name', 'visited', 'photo_url', 'updated',
     # 'status', 'group'])
-    if response.status_code == 200:
-        results = response.json()
-        if 'results' in results:
-            for lead in results['results']:
-                leads.append(lead)
+    if response:
+        if response.status_code == 200:
+            results = response.json()
+            if 'results' in results:
+                for lead in results['results']:
+                    # Fix Eddie's typo
+                    if 'bio' in lead and 'name' in lead:
+                        if lead['name'] == 'eddie welker':
+                            lead['bio'] = lead['bio'].replace(
+                                'DCPython metups', 'DC Python meetups')
+                    # Add bios for Rami and Jonathan Street
+                    if not 'bio' in lead and 'name' in lead:
+                        if lead['name'] == 'Rami':
+                            lead['bio'] = "Host of DC Python's 'Python Labs' held every Saturday."
+                    if not 'bio' in lead and 'name' in lead:
+                        if lead['name'] == 'Jonathan Street':
+                            lead['bio'] = "Host of DC Python's 'Project Night' held the third Tuesday of the month, every month."
+
+                    leads.append(lead)
     context['leads'] = leads
     return render(request, 'team.html', context)

@@ -16,7 +16,7 @@
   <div class="container text-center app-translate-15" data-transition="entrance">
     <blockquote class="pull-quote">
       <img class="rounded-circle" src="{{ lead.photo_url }}">
-      <cite>{{ lead.name }}</cite>
+      <cite><a href="https://www.meetup.com/members/{{ lead.member_id}}">{{ lead.name }}</a></cite>
       <p><strong>{{ lead.role }}</strong></p>
       <p>{{ lead.bio }}</p>
     </blockquote>
