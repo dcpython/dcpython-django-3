@@ -10,15 +10,32 @@
   </div>
 </div>
 
-{% for lead in leads %}
+<h2 class="block-title mb-3 text-uppercase app-myphone-brand text-center">Board Members</h2>
+
+{% for boardmember in boardmembers %}
 
 <div class="block block-bordered-lg">
   <div class="container text-center app-translate-15" data-transition="entrance">
     <blockquote class="pull-quote">
-      <img class="rounded-circle" src="{{ lead.photo_url }}">
-      <cite><a href="https://www.meetup.com/members/{{ lead.member_id}}">{{ lead.name }}</a></cite>
-      <p><strong>{{ lead.role }}</strong></p>
-      <p>{{ lead.bio }}</p>
+      <img class="rounded-circle" src="{{ boardmember.photo_url }}">
+      <cite><a href="https://www.meetup.com/members/{{ boardmember.member_id}}">{{ boardmember.name }}</a></cite>
+      <p><strong>{{ boardmember.bio }}</strong></p>
+    </blockquote>
+  </div>
+</div>
+
+{% endfor %}
+
+<h2 class="block-title mb-3 text-uppercase app-myphone-brand text-center">Event Organizers</h2>
+
+{% for organizer in organizers %}
+
+<div class="block block-bordered-lg">
+  <div class="container text-center app-translate-15" data-transition="entrance">
+    <blockquote class="pull-quote">
+      <img class="rounded-circle" src="{{ organizer.photo_url }}">
+      <cite><a href="https://www.meetup.com/members/{{ organizer.member_id}}">{{ organizer.name }}</a></cite>
+      <p><strong>{{ organizer.bio }}</strong></p>
     </blockquote>
   </div>
 </div>

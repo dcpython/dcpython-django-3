@@ -59,7 +59,8 @@ def team(request):
         response = requests.get(url)
     else:
         response = None
-    leads = []
+    organizers = []
+    boardmembers = []
     # dict_keys(['member_id', 'role', 'profile_url', 'created', 'bio',
     # 'photo', 'other_services', 'name', 'visited', 'photo_url', 'updated',
     # 'status', 'group'])
@@ -67,20 +68,30 @@ def team(request):
         if response.status_code == 200:
             results = response.json()
             if 'results' in results:
-                for lead in results['results']:
+                for organizer in results['results']:
                     # Fix Eddie's typo
-                    if 'bio' in lead and 'name' in lead:
-                        if lead['name'] == 'eddie welker':
-                            lead['bio'] = lead['bio'].replace(
+                    if 'bio' in organizer and 'name' in organizer and 'role' in organizer:
+                        if organizer['name'] == 'eddie welker':
+                            organizer['bio'] = organizer['bio'].replace(
                                 'DCPython metups', 'DC Python meetups')
                     # Add bios for Rami and Jonathan Street
-                    if not 'bio' in lead and 'name' in lead:
-                        if lead['name'] == 'Rami':
-                            lead['bio'] = "Host of DC Python's 'Python Labs' held every Saturday."
-                    if not 'bio' in lead and 'name' in lead:
-                        if lead['name'] == 'Jonathan Street':
-                            lead['bio'] = "Host of DC Python's 'Project Night' held the third Tuesday of the month, every month."
-
-                    leads.append(lead)
-    context['leads'] = leads
+                    if not 'bio' in organizer and 'name' in organizer:
+                        if organizer['name'] == 'Rami':
+                            organizer[
+                                'bio'] = "Host of DC Python's 'Python Labs' held every Saturday."
+                    if not 'bio' in organizer and 'name' in organizer:
+                        if organizer['name'] == 'Jonathan Street':
+                            organizer[
+                                'bio'] = "Host of DC Python's 'Project Night' held the third Tuesday of the month, every month."
+                    if (organizer['name'] == 'eddie welker'
+                            or organizer['name'] == 'Jonathan Street'
+                            or organizer['name'] == 'Rami'):
+                        organizers.append(organizer)
+                for boardmember in results['results']:
+                    # Fix Eddie's typo
+                    if (boardmember['name'] == 'Alex Clark'
+                            or boardmember['name'] == 'Amy Clark'):
+                        boardmembers.append(boardmember)
+    context['organizers'] = organizers
+    context['boardmembers'] = boardmembers
     return render(request, 'team.html', context)
