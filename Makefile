@@ -396,11 +396,13 @@ deploy:
 	-$(MAKE) git-commit-auto-push
 	aws s3 sync ./static/ s3://dcpython.org/
 	aws s3 cp ./static/about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws s3 cp ./static/donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws s3 cp ./static/index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws s3 cp ./static/assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
+		/donate.html \
 		/index.html \
-		/assets/js/application.js
+		/assets/js/application.js \
 		/assets/js/jquery.min.js
