@@ -399,4 +399,4 @@ deploy:
 	aws s3 cp ./static/about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws s3 cp ./static/assets/js/toolkit.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths /index.html         
+	aws cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths /index.html /assets/js/toolkit.js
