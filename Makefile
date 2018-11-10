@@ -396,4 +396,4 @@ APP=www
 .DEFAULT_GOAL=deploy
 deploy:
 	$(MAKE) git-commit-auto-push
-
+	aws s3 cp index.html s3://dcpython.org/
