@@ -391,3 +391,9 @@ pack: webpack  # Alias
 # dcpython
 PROJECT=dcpython
 APP=www
+
+
+.DEFAULT_GOAL=deploy
+deploy:
+	$(MAKE) git-commit-auto-push
+
