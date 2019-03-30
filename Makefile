@@ -404,6 +404,8 @@ deploy:
 	aws --profile=dc s3 cp ./static/team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/assets/css/toolkit-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+
 	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
 		/code-of-conduct.html \
