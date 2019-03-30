@@ -23,7 +23,8 @@ def home(request):
         for event in response.json():
             if not event['name'].startswith('[pending'):  # filter out pending
                 ms = event['time']
-                when = timezone.datetime.fromtimestamp(ms / 1000.0)
+                str_time = "{0} {1}".format(event['local_date'], event['local_time'])
+                when = timezone.datetime.strptime(str_time, "%Y-%m-%d %H:%M")
                 event['when'] = when
                 events.append(event)
         context['events'] = events[:3]  # Display first 3 events
