@@ -394,17 +394,17 @@ APP=www
 .DEFAULT_GOAL=deploy
 deploy:
 	-$(MAKE) git-commit-auto-push
-	aws --profile=dcpython s3 sync ./static/ s3://dcpython.org/
-	aws --profile=dcpython s3 cp ./static/about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/code-of-conduct.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/jobs.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/legal.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython s3 cp ./static/assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dcpython cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
+	aws --profile=dc s3 sync ./static/ s3://dcpython.org/
+	aws --profile=dc s3 cp ./static/about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/code-of-conduct.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/jobs.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/legal.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
 		/code-of-conduct.html \
 		/donate.html \
