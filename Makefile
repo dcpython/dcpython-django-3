@@ -409,7 +409,7 @@ deploy:
 	aws --profile=dc s3 cp ./static/assets/css/toolkit-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/css/application-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/img/background.jpg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
+	aws --profile=dc s3 cp ./static/favicon.ico s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
 		/code-of-conduct.html \
@@ -424,4 +424,5 @@ deploy:
 		/assets/js/toolkit.js \
 		/assets/css/toolkit-minimal.css \
 		/assets/css/application-minimal.css \
-		/assets/img/background.jpg
+		/assets/img/background.jpg \
+		/favicon.ico
