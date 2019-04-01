@@ -410,7 +410,7 @@ deploy:
 	aws --profile=dc s3 cp ./static/assets/css/application-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/img/background.jpg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/favicon.ico s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/img/hatch_logo.svg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./static/assets/img/hatch_invert_website.png s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc s3 cp ./static/assets/img/python-logo-dc.svg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
@@ -428,5 +428,5 @@ deploy:
 		/assets/css/application-minimal.css \
 		/assets/img/background.jpg \
 		/favicon.ico \
-		/assets/img/hatch_logo.svg \
+		/assets/img/hatch_invert_website.png \
 		/assets/img/python-logo-dc.svg
