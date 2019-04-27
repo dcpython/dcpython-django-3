@@ -74,15 +74,19 @@ ablog: ablog-clean ablog-install ablog-init ablog-build ablog-serve  # Chain
 ablog-clean:
 	-rm conf.py index.rst
 ablog-init:
-	bin/ablog start
+	ablog start
 ablog-install:
 	@echo "ablog\n" > requirements.txt
 	@$(MAKE) python-virtualenv
 	@$(MAKE) python-install
 ablog-build:
-	bin/ablog build
+	ablog build
 ablog-serve:
-	bin/ablog serve
+	ablog serve
+
+# Buildout
+b:
+	buildout
 
 # Django
 django-app-clean:
@@ -100,7 +104,7 @@ django-db-init:  # PostgreSQL
 db-init: django-db-init  # Alias
 django-debug: django-shell  # Alias
 django-graph:
-	bin/python manage.py graph_models $(APP) -o graph_models_$(PROJECT)_$(APP).png 
+	python manage.py graph_models $(APP) -o graph_models_$(PROJECT)_$(APP).png 
 django-init: 
 	@$(MAKE) django-db-init
 	@$(MAKE) django-app-init
@@ -116,25 +120,25 @@ django-install:
 	-@$(MAKE) git-commit-auto-push
 django-lint: django-yapf  # Alias
 django-migrate:
-	bin/python manage.py migrate
+	python manage.py migrate
 django-migrations:
-	bin/python manage.py makemigrations $(APP)
+	python manage.py makemigrations $(APP)
 	git add $(PROJECT)/$(APP)/migrations/*.py
 django-serve:
-	bin/python manage.py runserver 0.0.0.0:8000
+	python manage.py runserver 0.0.0.0:8000
 django-test:
-	bin/python manage.py test
+	python manage.py test
 django-settings:
 	echo "STATIC_ROOT = 'static'" >> $(PROJECT)/settings.py
 	echo "ALLOWED_HOSTS = ['*']" >> $(PROJECT)/settings.py
 	echo "AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', }, { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },]" >> $(PROJECT)/settings.py
 	echo "import dj_database_url; DATABASES = { 'default': dj_database_url.config(default=os.environ.get( 'DATABASE_URL', 'postgres://%s:%s@%s:%s/%s' % (os.environ.get('DB_USER', ''), os.environ.get('DB_PASS', ''), os.environ.get('DB_HOST', 'localhost'), os.environ.get('DB_PORT', '5432'), os.environ.get('DB_NAME', 'project_app'))))}" >> $(PROJECT)/settings.py
 django-shell:
-	bin/python manage.py shell
+	python manage.py shell
 django-static:
-	bin/python manage.py collectstatic --noinput
+	python manage.py collectstatic --noinput
 django-su:
-	bin/python manage.py createsuperuser
+	python manage.py createsuperuser
 django-yapf:
 	-yapf -i *.py
 	-yapf -i -e $(PROJECT)/urls.py $(PROJECT)/*.py  # Don't format urls.py
@@ -144,6 +148,7 @@ migrate: django-migrate  # Alias
 migrations: django-migrations  # Alias
 static: django-static  # Alias
 su: django-su  # Alias
+test: django-test  # Alias
 
 # Elastic Beanstalk
 eb-init: 
@@ -247,7 +252,7 @@ npm-install:
 # Pip
 freeze: pip-freeze
 pip-freeze:
-	bin/pip freeze | sort > $(TMP)/requirements.txt
+	pip freeze | sort > $(TMP)/requirements.txt
 	mv -f $(TMP)/requirements.txt .
 
 # Plone
@@ -258,7 +263,7 @@ plone-heroku:
 	@export PORT=8080 && \
 		export USERNAME=admin && \
 		export PASSWORD=admin && \
-		bin/buildout -c heroku.cfg
+		buildout -c heroku.cfg
 plone-install:
 	@echo plock > requirements.txt
 	@$(MAKE) python-virtualenv
@@ -267,13 +272,12 @@ plone-init:
 	plock --force --no-cache --no-virtualenv .
 plone-serve:
 	@echo "\n\tServing HTTP on http://0.0.0.0:8080\n"
-	@bin/plone fg
+	@plone fg
 
 # Python
 install: python-install  # Alias
 lint: python-lint  # Alias
 serve: python-serve  # Alias
-test: python-test  # Alias
 python-clean:
 	find . -name \*.pyc | xargs rm -v
 python-flake:
@@ -281,17 +285,19 @@ python-flake:
 	-flake8 $(PROJECT)/*.py
 	-flake8 $(PROJECT)/$(APP)/*.py
 python-install:
-	bin/pip install -r requirements.txt
+	pip install -r requirements.txt
 python-lint: python-yapf python-flake python-wc  # Chain
 python-serve:
 	@echo "\n\tServing HTTP on http://0.0.0.0:8000\n"
-	bin/python -m SimpleHTTPServer
+	python -m SimpleHTTPServer
 package-test:
-	bin/python setup.py test
+	python setup.py test
 python-virtualenv-2-7:
 	virtualenv --python=python2.7 .
 python-virtualenv-3-6:
 	virtualenv --python=python3.6 .
+python-virtualenv-3-7:
+	virtualenv --python=python3.7 .
 python-yapf:
 	-yapf -i *.py
 	-yapf -i $(PROJECT)/*.py
@@ -300,8 +306,14 @@ python-wc:
 	-wc -l *.py
 	-wc -l $(PROJECT)/*.py
 	-wc -l $(PROJECT)/$(APP)/*.py
-virtualenv: python-virtualenv-3-6  # Alias
+python-pipenv:
+	pipenv install
+	git add Pipfile
+	git add Pipfile.lock
+	git commit -a -m "Add pipenv"; git push
+virtualenv: python-virtualenv-3-7  # Alias
 virtualenv-2: python-virtualenv-2-7  # Alias
+pipenv: python-pipenv # Alias
 
 # Python Package
 package: package-init  # Alias
@@ -320,9 +332,9 @@ package-pyroma:
 package-readme:
 	rst2html.py README.rst > readme.html; open readme.html
 package-release:
-	bin/python setup.py sdist --format=gztar,zip upload
+	python setup.py sdist --format=gztar,zip upload
 package-release-test:
-	bin/python setup.py sdist --format=gztar,zip upload -r test
+	python setup.py sdist --format=gztar,zip upload -r test
 
 # Redhat
 redhat-update:
@@ -342,7 +354,7 @@ readme:
 review:
 ifeq ($(UNAME), Darwin)
 	@open -a $(EDITOR) `find $(PROJECT) -name \*.py | grep -v __init__.py | grep -v migrations`\
-		`find $(PROJECT) -name \*.html`
+		`find $(PROJECT) -name \*.html` `find $(PROJECT) -name \*.js`
 else
 	@echo "Unsupported"
 endif
@@ -382,50 +394,8 @@ vagrant-update:
 
 # Webpack
 webpack-init:
-	touch entry.js
-	echo "module.exports = { entry: './entry.js', output: { filename: 'bundle.js' } }" > webpack.config.js
+	touch app.js
+	echo "module.exports = { entry: './app.js', output: { filename: 'bundle.js' } }" > webpack.config.js
 webpack:
-	webpack
+	./node_modules/.bin/webpack
 pack: webpack  # Alias
-
-# dcpython
-PROJECT=dcpython
-APP=www
-.DEFAULT_GOAL=deploy
-deploy:
-	-$(MAKE) git-commit-auto-push
-	aws --profile=dc s3 cp ./about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./code-of-conduct.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./jobs.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./legal.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/js/popper.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/js/toolkit.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/css/toolkit-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/css/application-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/img/background.jpg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./favicon.ico s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/img/hatch_invert_website.png s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./assets/img/python-logo-dc.svg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
-		/about.html \
-		/code-of-conduct.html \
-		/donate.html \
-		/index.html \
-		/jobs.html \
-		/legal.html \
-		/team.html \
-		/assets/js/application.js \
-		/assets/js/jquery.min.js \
-		/assets/js/popper.min.js \
-		/assets/js/toolkit.js \
-		/assets/css/toolkit-minimal.css \
-		/assets/css/application-minimal.css \
-		/assets/img/background.jpg \
-		/favicon.ico \
-		/assets/img/hatch_invert_website.png \
-		/assets/img/python-logo-dc.svg
