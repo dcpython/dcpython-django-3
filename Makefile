@@ -394,24 +394,23 @@ APP=www
 .DEFAULT_GOAL=deploy
 deploy:
 	-$(MAKE) git-commit-auto-push
-	aws --profile=dc s3 sync ./static/ s3://dcpython.org/
-	aws --profile=dc s3 cp ./static/about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/code-of-conduct.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/jobs.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/legal.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/js/popper.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/js/toolkit.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/css/toolkit-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/css/application-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/img/background.jpg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/favicon.ico s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/img/hatch_invert_website.png s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-	aws --profile=dc s3 cp ./static/assets/img/python-logo-dc.svg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp ./about.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .code-of-conduct.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .donate.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .index.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .jobs.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .legal.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .team.html s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/js/jquery.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/js/application.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/js/popper.min.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/js/toolkit.js s3://dcpython.org/assets/js/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/css/toolkit-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/css/application-minimal.css s3://dcpython.org/assets/css/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/img/background.jpg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .favicon.ico s3://dcpython.org/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/img/hatch_invert_website.png s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+	aws --profile=dc s3 cp .assets/img/python-logo-dc.svg s3://dcpython.org/assets/img/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 	aws --profile=dc cloudfront create-invalidation --distribution-id E315Y1FCSR1NT1 --paths \
 		/about.html \
 		/code-of-conduct.html \
